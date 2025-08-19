@@ -188,6 +188,12 @@ class TreeSecurity
         if (Yii::$app instanceof Application) {
             return; // skip hash signature validation for console apps
         }
+
+        // skip on initial load
+        if (empty($oldHash)) {
+            return;
+        }
+        
         /**
          * @var Module $module
          */
